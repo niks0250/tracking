@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect
 from flask.templating import render_template
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
 app.debug = True
@@ -38,8 +39,9 @@ def vehicle():
     driver_name = request.form.get("driver_name")
     latitude = request.form.get("latitude")
     longitude = request.form.get("longitude")
-    timestamp = request.form.get("timestamp")
+    timestamp = datetime.strptime(request.form.get("timestamp"),'%Y-%m-%dT%H:%M')
     acceleration = request.form.get("acceleration")
+    
     if vehicle_no!='' and driver_name!='' and latitude!='' and longitude!='' and timestamp!='' and acceleration is not None:
         p=currentlocation(vehicle_no=vehicle_no,driver_name=driver_name,latitude=latitude,longitude=longitude,timestamp=timestamp,acceleration=acceleration)
         db.session.add(p)
@@ -55,6 +57,9 @@ def erase(vehicle_no):
     db.session.commit()
     return redirect('/')
        
+@app.route('/map')
+def plot():
+    return render_template('map.html')
 if __name__ =='__main__':
     app.run()
 
