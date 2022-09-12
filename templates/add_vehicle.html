@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Add currentlocation</title>
+    </head>
+    <body>
+        <h3>currentlocation form</h3>
+        <form action="/add" method="POST">
+            <label>vehicle_no</label>
+            <input type="text" name ="vehicle_no" placeholder="vehicle_no...">
+            <label>driver_name</label>
+            <input type="text" name="driver_name" placeholder="driver_name...">
+            <label>latitude</label>
+            <input type="text" name="latitude" placeholder="latitude...">
+            <label>longitude</label>
+            <input type="text" name="longitude" placeholder="longitude...">
+            <label>timestamp</label>
+            <input type="datetime-local" name="timestamp" placeholder="timestamp...">
+            <label>acceleration</label>
+            <input type="number" step="0.001" name="acceleration" placeholder="acceleration...">
+            <button type="submit">Add</button>
+        </form>
+    </body>
+</html>
